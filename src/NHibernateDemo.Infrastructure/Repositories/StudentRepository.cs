@@ -35,6 +35,7 @@ public class StudentRepository : IStudentRepository
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to add student: {Student}", student);
+            await transaction.RollbackAsync();
             return false;
         }
     }
